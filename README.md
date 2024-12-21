@@ -9,7 +9,9 @@
 ### **a) 폴더 이름**
 - **snake_case**를 사용합니다. (소문자 + 언더스코어)
 - 폴더 이름은 알고리즘의 주요 기능을 **명확히 설명**해야 합니다.
+  ```plaintext
 - {영상데이터}_{타겟}_{기능}
+  ```
 - 예시:
   - `sar_ship_multiclass_classifier`: SAR 선종 분류 알고리즘
   - `sar_ship_velocity_estimator`: SAR 선박 속도 추정 알고리즘
