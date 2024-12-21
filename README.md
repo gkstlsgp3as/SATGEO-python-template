@@ -69,29 +69,15 @@ project/
 │   ├── models/                 # 학습된 모델 저장
 │   └── reports/                # 분석 결과
 ```
+
 ---
-## **3. 설정 파일 (cfg.py)**
-각 알고리즘의 설정은 cfg.py 파일로 관리합니다. 이 파일은 다음과 같은 구조를 따라야 합니다:
-## 예시
-```code
-# 알고리즘 설정 파일
-ALGORITHM_NAME = "iceye_ship_multiclass_classifier"
-DESCRIPTION = "선박 이미지를 다중 클래스로 분류합니다."
-# 입력 및 출력 타입
-INPUT_TYPE = "simple"  # simple, batch, diff 중 선택
-OUTPUT_TYPE = ["csv"]  # 출력 파일 형식
-# 알고리즘 매개변수
-PARAMETERS = {
-    "img_size": 224,  # 이미지 크기
-    "classes": ["Cargo", "Fishing", "Sailing", "Tanker", "TugTow"],  # 클래스 목록
-}
-# 모델 파일 경로
-MODEL_PATH = "./models/weights/iceye_ship_multiclass_classifier.pt"
-```
----
-## **4. 체크리스트**
-✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인.
-✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인.
-✅ **배포 코드**: 필수 함수를 포함한 단일 파일 제작 여부 확인. 
-✅ **주석 설명**: 코드 주요 부분에 주석 및 설명 추가. 
-✅ **문서화**: 프로젝트의 메인 `README.md`에 알고리즘 설명 및 실행 방법 추가.
+## **3. 체크리스트**
+✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인
+
+✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인
+
+✅ **배포 코드**: 필수 함수를 포함한 단일 파일 제작 여부 확인
+
+✅ **주석 설명**: 코드 주요 부분에 주석 및 설명 추가
+
+✅ **문서화**: 프로젝트의 메인 `README.md`에 알고리즘 설명 및 실행 방법 추가
