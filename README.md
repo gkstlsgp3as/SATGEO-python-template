@@ -19,10 +19,19 @@
 - **snake_case**를 사용합니다.
 - 파일 이름은 **목적을 명확히 나타내야** 합니다.
 - 예시:
-  - `main.py`: 알고리즘 실행 코드
-  - `classifier.py`: 분류 로직 파일
-  - `preprocessing.py`: 데이터 전처리 파일
-  - `postprocessing.py`: 결과 후처리 파일
+| **목적**              | **파일 이름 예시**          | **설명**                                     |
+|-----------------------|----------------------------|---------------------------------------------|
+| 실행 코드             | `main.py`                 | 알고리즘 실행을 위한 진입점 코드             |
+| 분류 로직             | `classifier.py`           | 분류 알고리즘의 핵심 로직 코드               |
+| 데이터 전처리          | `preprocessing.py`        | 입력 데이터를 전처리하는 코드                |
+| 결과 후처리           | `postprocessing.py`       | 알고리즘 결과를 후처리하는 코드              |
+| 설정 파일             | `cfg.py`                  | 알고리즘 매개변수를 관리하는 설정 파일        |
+| 모델 정의             | `model.py`                | 모델의 구조 및 초기화 코드                   |
+| 유틸리티 함수         | `utils.py`                | 공통으로 사용하는 유틸리티 함수 코드         |
+| 데이터셋 처리         | `dataset.py`              | 데이터셋 로드 및 처리 관련 코드              |
+| 시각화 코드           | `visualization.py`        | 결과를 시각화하는 코드                       |
+| 테스트 코드           | `test_algorithm.py`       | 알고리즘 유닛 테스트를 위한 코드             |
+
 
 ---
 
@@ -58,4 +67,36 @@ project/
 ├── requirements.txt            # 의존성 패키지 목록
 ├── .gitignore                  # git push 제외 목록
 └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+
+## **3. 설정 파일 (cfg.py)**
+
+각 알고리즘의 설정은 cfg.py 파일로 관리합니다. 이 파일은 다음과 같은 구조를 따라야 합니다:
+
+## 예시
+```code
+# 알고리즘 설정 파일
+
+ALGORITHM_NAME = "iceye_ship_multiclass_classifier"
+DESCRIPTION = "선박 이미지를 다중 클래스로 분류합니다."
+
+# 입력 및 출력 타입
+INPUT_TYPE = "simple"  # simple, batch, diff 중 선택
+OUTPUT_TYPE = ["csv"]  # 출력 파일 형식
+
+# 알고리즘 매개변수
+PARAMETERS = {
+    "img_size": 224,  # 이미지 크기
+    "classes": ["Cargo", "Fishing", "Sailing", "Tanker", "TugTow"],  # 클래스 목록
+}
+
+# 모델 파일 경로
+MODEL_PATH = "./models/weights/iceye_ship_multiclass_classifier.pt"
+
+```
+
+## **4. 체크리스트**
+✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인.
+✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인.
+✅ **배포 코드**: 필수 함수를 포함한 단일 파일 제작 여부 확인. 
+
 
