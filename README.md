@@ -103,9 +103,13 @@ MODEL_PATH = "./models/weights/iceye_ship_multiclass_classifier.pt"
 
 ## **4. 체크리스트**
 ✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인.
+
 ✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인.
+
 ✅ **배포 코드**: 필수 함수를 포함한 단일 파일 제작 여부 확인. 
+
 ✅ **주석 설명**: 코드 주요 부분에 주석 및 설명 추가. 
+
 ✅ **문서화**: 프로젝트의 메인 `README.md`에 알고리즘 설명 및 실행 방법 추가.
 
 
