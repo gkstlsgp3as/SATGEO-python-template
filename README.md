@@ -33,6 +33,24 @@
 | 데이터셋 처리         | `dataset.py`              | 데이터셋 로드 및 처리 관련 코드              |
 | 시각화 코드           | `visualization.py`        | 결과를 시각화하는 코드                       |
 
+### **c) 클래스 이름**
+- **PascalCase**를 사용합니다. (각 단어의 첫문자 대문자)
+- 클래스 이름은 기능을 명확히 나타내며, 간결하고 설명적이어야 합니다.
+- 일반적으로 잘 알려져 있거나 널리 사용되는 경우에만 사용합니다.
+- 예시:
+  - ShipClassificationModel: 선박 분류를 위한 딥러닝 모델 클래스.
+  - Bottleneck: ResNet의 Bottleneck 블록을 나타내는 클래스.
+  - ShipClassificationDataset: 선박 분류 작업을 위한 데이터셋 클래스.
+  - TiffProcessor: TIFF 파일을 처리하는 유틸리티 클래스.
+ 
+
+### **d) 함수 이름**
+- **snake_case**를 사용합니다. (각 단어의 첫문자 대문자)
+- 함수는 주로 동작을 수행하므로, 동사로 시작하여 기능을 명확히 표현합니다.
+- 예시:
+  - load_image: 이미지를 로드.
+  - process_data: 데이터를 처리.
+  - train_model: 모델 학습.
 ---
 
 ## **2. 폴더 구조**
