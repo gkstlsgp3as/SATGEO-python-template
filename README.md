@@ -46,7 +46,8 @@
 project/
 ├── deploy/                     # 배포용
 │   ├── algorithm/
-│   │   ├── cfg.py              # 입력 인자    
+│   │   ├── utils/              # 데이터 처리 등 기타 유틸리티 함수
+│   │   ├── models/             # 모델 정의  
 │   │   └── algorithm.py        # 알고리즘; code/ 하위 함수 통합 버전
 │   ├── input/
 │   │   ├── input.tif           # 입력 영상 샘플
@@ -55,9 +56,8 @@ project/
 │   │   └── output.{tif/json}   # 알고리즘 실행 결과 샘플; tif, json, txt 등 
 │
 ├── code/                       # 실제 코드
-│   ├── data/                   # 데이터 관련 처리
-│   ├── utils/                  # 공통 유틸리티 함수
-│   ├── models/                 # 모델 학습 및 정의
+│   ├── utils/                  # 데이터 처리 등 기타 유틸리티 함수
+│   ├── models/                 # 모델 정의
 │   ├── experiments/            # 실험 스크립트: 주로 ipynb 노트북 파일
 │   └── main.py                 # 메인 함수
 ├── data/                       # 데이터 디렉토리
