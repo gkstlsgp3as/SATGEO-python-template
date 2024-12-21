@@ -4,8 +4,8 @@
 @Author        : Shinhye Han
 @File          : train.py
 @Noice         : 
-@Description   : Train a ship classification model.
-@How to use    : python train.py -d {data_dir} -m {meta_file} -o {output_dir} -c {classes} -e {epochs}
+@Description   : Train a XXX model.
+@How to use    : python train.py -i {input_dir} -m {meta_file} -o {output_dir} -c {classes} -e {epochs}
 
 @Modificattion :
     @Author    :
