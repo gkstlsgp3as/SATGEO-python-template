@@ -69,6 +69,9 @@ project/
 ├── requirements.txt            # 의존성 패키지 목록
 ├── .gitignore                  # git push 제외 목록
 └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+```
+
+---
 
 ## **3. 설정 파일 (cfg.py)**
 
@@ -95,6 +98,8 @@ PARAMETERS = {
 MODEL_PATH = "./models/weights/iceye_ship_multiclass_classifier.pt"
 
 ```
+
+---
 
 ## **4. 체크리스트**
 ✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인.
