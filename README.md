@@ -31,6 +31,7 @@
 각 알고리즘은 다음과 같은 폴더 구조를 따라야 합니다:
 
 ## 예시
+```plaintext
 project/
 ├── deploy/                     # 배포용
 │   ├── algorithm/
