@@ -32,6 +32,66 @@
 | 유틸리티 함수         | `utils.py`                | 공통으로 사용하는 유틸리티 함수 코드         |
 | 데이터셋 처리         | `dataset.py`              | 데이터셋 로드 및 처리 관련 코드              |
 | 시각화 코드           | `visualization.py`        | 결과를 시각화하는 코드                       |
-| 테스트 코드           | `test_algorithm.py`       | 알고리즘 유가
 
+---
 
+## **2. 폴더 구조**
+각 알고리즘은 다음과 같은 폴더 구조를 따라야 합니다:
+## 예시
+```plaintext
+project/
+├── deploy/                     # 배포용
+│   ├── algorithm/
+│   │   ├── utils/              # 데이터 처리 등 기타 유틸리티 함수
+│   │   ├── models/             # 모델 정의  
+│   │   ├── algorithm.py        # 알고리즘; code/ 하위 함수 통합 버전
+│   │   ├── requirements.txt            # 의존성 패키지 목록
+│   │   ├── .gitignore                  # git push 제외 목록
+│   │   └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+│   ├── input/
+│   │   ├── input.tif           # 입력 영상 샘플
+│   │   └── metainfo.json       # 영상 metadata   
+│   ├── output/
+│   │   └── output.{tif/json}   # 알고리즘 실행 결과 샘플; tif, json, txt 등 
+│
+├── code/                       # 실제 코드
+│   ├── utils/                  # 데이터 처리 등 기타 유틸리티 함수
+│   ├── models/                 # 모델 정의
+│   ├── experiments/            # 실험 스크립트: 주로 ipynb 노트북 파일
+│   ├── main.py                 # 메인 함수
+│   ├── requirements.txt            # 의존성 패키지 목록
+│   ├── .gitignore                  # git push 제외 목록
+│   └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+├── data/                       # 데이터 디렉토리
+├── results/                    # 결과 디렉토리
+│   ├── logs/                   # 로그 데이터
+│   ├── figures/                # 시각화 결과
+│   ├── models/                 # 학습된 모델 저장
+│   └── reports/                # 분석 결과
+```
+---
+## **3. 설정 파일 (cfg.py)**
+각 알고리즘의 설정은 cfg.py 파일로 관리합니다. 이 파일은 다음과 같은 구조를 따라야 합니다:
+## 예시
+```code
+# 알고리즘 설정 파일
+ALGORITHM_NAME = "iceye_ship_multiclass_classifier"
+DESCRIPTION = "선박 이미지를 다중 클래스로 분류합니다."
+# 입력 및 출력 타입
+INPUT_TYPE = "simple"  # simple, batch, diff 중 선택
+OUTPUT_TYPE = ["csv"]  # 출력 파일 형식
+# 알고리즘 매개변수
+PARAMETERS = {
+    "img_size": 224,  # 이미지 크기
+    "classes": ["Cargo", "Fishing", "Sailing", "Tanker", "TugTow"],  # 클래스 목록
+}
+# 모델 파일 경로
+MODEL_PATH = "./models/weights/iceye_ship_multiclass_classifier.pt"
+```
+---
+## **4. 체크리스트**
+✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인.
+✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인.
+✅ **배포 코드**: 필수 함수를 포함한 단일 파일 제작 여부 확인. 
+✅ **주석 설명**: 코드 주요 부분에 주석 및 설명 추가. 
+✅ **문서화**: 프로젝트의 메인 `README.md`에 알고리즘 설명 및 실행 방법 추가.
