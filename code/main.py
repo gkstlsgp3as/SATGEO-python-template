@@ -5,7 +5,7 @@
 @File          : train.py
 @Noice         : 
 @Description   : Train a XXX model.
-@How to use    : python train.py -i {input_dir} -m {meta_file} -o {output_dir} -c {classes} -e {epochs}
+@How to use    : python main.py -i {input_dir} -o {output_dir} -m {meta_file} 
 
 @Modificattion :
     @Author    :
