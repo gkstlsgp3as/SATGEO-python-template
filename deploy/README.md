@@ -26,12 +26,11 @@ chmod +x build.sh
 #### 컨테이너 실행
 ```bash
 docker images # Docker 이미지 확인
-docker run -v "Document/data:/root/project/data" -d -t -i app:1.0 /bin/bash
+docker run -v "Document/data:/root/project/data" -d -ti app:1.0 /bin/bash
 
 ```
 - d: Detached mode, 백그라운드 모드에서 컨테이너를 실행
-- t: Pseudo-TTY, 가상 터미널을 할당하여 Bash 인터프리터 사용
-- i: 대화형 모드에서 컨테이너를 실행하여 표준 입력(STDIN)을 활성화
+- ti: 대화형 모드에서 컨테이너를 실행하여 터미널의 입력을 컨테이너로 전달 
 - v: 외부 볼륨을 컨테이너에 마운트
 - /bin/bash: 컨테이너 내에서 Bash 환경 실행
 
@@ -52,7 +51,7 @@ docker run -v "Document/data:/root/project/data" -d -t -i app:1.0 /bin/bash
      - docker run 시 -v로 원하는 외부 데이터 마운트
 ```bash
 docker build -t app:1.0 .
-docker run -d -t -i -p 8888:8888 app:1.0
+docker run -d -ti -p 8888:8888 app:1.0
 
 # VS Code attach + repo clone
 # VS Code 종료
