@@ -22,12 +22,12 @@ from models.model_selector import create_model
 import torch
 
 
-def train_model(data_dir, meta_file, device, config):
+def train_model(input_dir: str, meta_file: str, device: torch.device, config: Dict) -> None:
     """
     Train the model on the dataset.
 
     Args:
-        data_dir (str): Path to the training dataset.
+        input_dir (str): Path to the training dataset.
         meta_file (str): Path to the metadata file.
         device (torch.device): Device to use for training.
         config (dict): Configuration dictionary with training parameters.
