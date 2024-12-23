@@ -93,6 +93,11 @@ project/
 │   ├── .gitignore              # git push 제외 목록
 │   └── README.md               # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
 ├── data/                       # 데이터 디렉토리
+│   ├── raw/              # 원본 데이터 
+│   ├── processed/      
+│   ├── train/       
+│   ├── val/        
+│   └── test/        
 ├── results/                    # 결과 디렉토리
 │   ├── logs/                   # 로그 데이터
 │   ├── figures/                # 시각화 결과
