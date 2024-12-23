@@ -49,7 +49,7 @@ def run_xxx(input_dir, output_dir, meta_file, config):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Train a ship classification model.")
-    parser.add_argument("-d", "--input_dir", type=str, required=True, help="Path to training data.")
+    parser.add_argument("-i", "--input_dir", type=str, required=True, help="Path to training data.")
     parser.add_argument("-o", "--output_dir", type=str, required=True, help="Directory to save the model.")
     parser.add_argument("-m", "--meta_file", type=str, required=True, help="Path to metadata file.")
     args = parser.parse_args()
