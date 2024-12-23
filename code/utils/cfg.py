@@ -19,16 +19,7 @@ algorithm_info = {
     "description": "A deep learning-based algorithm for classifying ships from SAR images."
 }
 
-# Output Parameters
-output_params = {
-    "epsg": 4326,             # EPSG code for geospatial outputs
-    "color_map": {            # Color mapping for visualizations
-        "Cargo": (255, 0, 0),    # Red
-        "Fishing": (0, 255, 0),  # Green
-        "Tanker": (0, 0, 255),   # Blue
-        "Sailing": (255, 255, 0),  # Yellow
-        "TugTow": (255, 0, 255)   # Magenta
-    },
-    "file_format": "tif",     # Output file format (e.g., tif, png)
-    "visualize_results": True # Whether to generate visualization of results
-}
+# Inference Information
+aux_path = "./data/landmask/landmask.tif"        # 그 외 다른 입력 자료 경로
+weights = "./models/weights/best.pth"            # 모델 경로 
+device = "cuda:0"                                # GPU 지정 
