@@ -1,25 +1,26 @@
 # **알고리즘 네이밍 및 폴더 구조 가이드**
 
-이 가이드는 새로운 코드를 개발할 때 사용할 네이밍 규칙과 폴더 구조를 설명합니다.
+본 가이드는 SATGEO 내에서 코드를 개발할 때 사용할 네이밍 규칙과 폴더 구조를 설명합니다.
 
 ---
 
 ## **1. 네이밍 규칙**
 
 ### **a) 폴더 이름**
-- **snake_case**를 사용합니다. (소문자 + 언더스코어)
-- 폴더 이름은 알고리즘의 주요 기능을 **명확히 설명**해야 합니다.
-- ```{영상데이터}_{타겟}_{기능}```
+- **snake_case** 사용 (소문자 + 언더스코어)
+- 폴더 이름은 알고리즘의 주요 기능을 **명확히 설명**
+- ```{영상데이터}_{대상}_{기능}```
+- 영상 데이터는 필요 시 생략 가능 
 - 예시:
   - `sar_ship_multiclass_classifier`: SAR 선종 분류 알고리즘
   - `sar_ship_velocity_estimator`: SAR 선박 속도 추정 알고리즘
   - `sar_ship_route_predictor`: SAR 선박 항로 예측 알고리즘
 
 ### **b) 파일 이름**
-- **snake_case**를 사용합니다.
-- 파일 이름은 **목적을 명확히 나타내야** 합니다.
+- **snake_case** 사용
+- 파일 이름은 **목적을 명확히 포함** 
 - 예시:
-
+- 
 
 | **목적**              | **파일 이름 예시**          | **설명**                                     |
 |-----------------------|----------------------------|---------------------------------------------|
@@ -34,27 +35,27 @@
 | 시각화 코드           | `visualization.py`        | 결과를 시각화하는 코드                       |
 
 ### **c) 클래스 이름**
-- **PascalCase**를 사용합니다. (각 단어의 첫문자 대문자)
-- 클래스 이름은 기능을 명확히 나타내며, 간결하고 설명적이어야 합니다.
-- 일반적으로 잘 알려져 있거나 널리 사용되는 경우에만 사용합니다.
+- **PascalCase** 사용 (각 단어의 첫문자 대문자)
+- 클래스 이름은 기능을 **명확히 설명**
+- 일반적으로 잘 알려져 있는 경우에만 약어 사용
 - 예시:
-  - ShipClassificationModel: 선박 분류를 위한 딥러닝 모델 클래스.
-  - Bottleneck: ResNet의 Bottleneck 블록을 나타내는 클래스.
-  - ShipClassificationDataset: 선박 분류 작업을 위한 데이터셋 클래스.
-  - TiffProcessor: TIFF 파일을 처리하는 유틸리티 클래스.
+  - ShipClassificationModel: 선박 분류를 위한 딥러닝 모델 클래스
+  - Bottleneck: ResNet의 Bottleneck 블록을 나타내는 클래스
+  - ShipClassificationDataset: 선박 분류 작업을 위한 데이터셋 클래스
+  - TiffProcessor: TIFF 파일을 처리하는 유틸리티 클래스
  
 
 ### **d) 함수 이름**
-- **snake_case**를 사용합니다. (각 단어의 첫문자 대문자)
-- 함수는 주로 동작을 수행하므로, 동사로 시작하여 기능을 명확히 표현합니다.
+- **snake_case** 사용 (각 단어의 첫문자 대문자)
+- ```{동사}_{대상}```
 - 예시:
-  - load_image: 이미지를 로드.
-  - process_data: 데이터를 처리.
-  - train_model: 모델 학습.
+  - load_image: 이미지를 로드
+  - process_data: 데이터를 처리
+  - train_model: 모델 학습
 ---
 
 ## **2. 폴더 구조**
-각 알고리즘은 다음과 같은 폴더 구조를 따라야 합니다:
+각 알고리즘은 다음의 폴더 구조를 따라야 함: 
 ## 예시
 ```plaintext
 project/
@@ -63,9 +64,9 @@ project/
 │   │   ├── utils/              # 데이터 처리 등 기타 유틸리티 함수
 │   │   ├── models/             # 모델 정의  
 │   │   ├── algorithm.py        # 알고리즘; code/ 하위 알고리즘1 통합 버전
-│   │   ├── requirements.txt            # 의존성 패키지 목록
-│   │   ├── .gitignore                  # git push 제외 목록
-│   │   └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+│   │   ├── requirements.txt    # 의존성 패키지 목록
+│   │   ├── .gitignore          # git push 제외 목록
+│   │   └── README.md           # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
 │   ├── algorithm2/
 │   │   ├── algorithm2.py        # 알고리즘; code/ 하위 알고리즘2 통합 버전
 │   ├── input/
@@ -80,9 +81,9 @@ project/
 │   ├── experiments/            # 실험: 주로 ipynb 노트북 파일
 │   ├── scripts/                # 실행 스크립트: .sh 파일 등
 │   ├── main.py                 # 메인 함수
-│   ├── requirements.txt            # 의존성 패키지 목록
-│   ├── .gitignore                  # git push 제외 목록
-│   └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+│   ├── requirements.txt        # 의존성 패키지 목록
+│   ├── .gitignore              # git push 제외 목록
+│   └── README.md               # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
 ├── data/                       # 데이터 디렉토리
 ├── results/                    # 결과 디렉토리
 │   ├── logs/                   # 로그 데이터
@@ -93,7 +94,7 @@ project/
 
 ---
 ## **3. 체크리스트**
-✅ **PEP484 스타일 준수**: 모든 코드가 Python의 PEP484 스타일 가이드를 준수하는지 확인 -> ChatGPT 활용
+✅ **PEP 484 스타일 준수**: 모든 코드가 Python의 PEP 484 스타일 가이드를 준수하는지 확인 -> ChatGPT 활용
 
 ✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인
 
