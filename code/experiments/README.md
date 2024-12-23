@@ -22,6 +22,7 @@
        ProxyJump GPU_master
        ServerAliveInterval 60 ```
 
+
    - F1 > Remote-SSH: Connect to Host > node03 > 비밀번호 입력 (두 번)
    
 2. **가상환경 Kernel 선택 후 GPU 사용 가능 여부 확인**
