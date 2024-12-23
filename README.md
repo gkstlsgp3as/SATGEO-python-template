@@ -79,9 +79,8 @@ project/
 │   ├── input/
 │   │   ├── input.tif           # 입력 영상 샘플
 │   │   └── metainfo.json       # 영상 metadata   
-│   ├── output/
-│   │   └── output.{tif/json}   # 알고리즘 실행 결과 샘플; tif, json, txt 등 
-│
+│   └── output/
+│       └── output.{tif/json}   # 알고리즘 실행 결과 샘플; tif, json, txt 등 
 ├── code/                       # 실제 코드
 │   ├── utils/                  # 데이터 처리 등 기타 유틸리티 함수
 │   ├── models/                 # 모델 정의
@@ -97,11 +96,11 @@ project/
 │   ├── train/                  # 학습/검증/테스트 데이터 분할
 │   ├── val/        
 │   └── test/        
-├── results/                    # 결과 디렉토리
-│   ├── logs/                   # 로그 데이터
-│   ├── figures/                # 시각화 결과
-│   ├── models/                 # 학습된 모델 저장
-│   └── reports/                # 분석 결과
+└── results/                    # 결과 디렉토리
+    ├── logs/                   # 로그 데이터
+    ├── figures/                # 시각화 결과
+    ├── models/                 # 학습된 모델 저장
+    └── reports/                # 분석 결과
 ```
 
 ---
