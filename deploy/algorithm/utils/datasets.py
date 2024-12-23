@@ -1,3 +1,18 @@
+# -*- coding: utf-8 -*-
+"""
+@Time          : 2024/12/18 00:00
+@Author        : Shinhye Han
+@File          : dataset.py
+@Noice         : 
+@Description   : Dataset definitions for ship classification tasks, including platform information.
+@How to use    : Import the `ShipClassificationDataset` class to load and preprocess datasets.
+
+@Modificattion :
+    @Author    :
+    @Time      :
+    @Detail    :
+"""
+
 import json
 import os
 from pathlib import Path
@@ -22,10 +37,10 @@ def read_platform(meta_file: str) -> List[str]:
         meta_data = json.load(meta)
     return meta_data['Platform']
 
-class ShipClsDataset(Dataset):
+class ShipClassificationDataset(Dataset):
     def __init__(self, path: str, transform: Compose, classes: List[str]) -> None:
         """
-        Initializes the ShipClsDataset with image paths, transformations, and class labels.
+        Initializes the ShipClassificationDataset with image paths, transformations, and class labels.
 
         Args:
             path (str): Directory path where images are stored.
