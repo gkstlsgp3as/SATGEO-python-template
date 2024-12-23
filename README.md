@@ -56,6 +56,10 @@
   - load_image: 이미지를 로드
   - process_data: 데이터를 처리
   - train_model: 모델 학습
+
+### **e) 상수 이름**
+- **UPPER_CASE** 사용 (전부 대문자)
+- 예시: ```MAX_EPOCHS = 100```
 ---
 
 ## **2. 폴더 구조**
