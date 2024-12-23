@@ -28,8 +28,7 @@ import time
 import json
 from collections import OrderedDict
 
-
-def run_xxx(input_dir, output_dir, meta_file, config):
+def run_xxx(input_dir: str, output_dir: str, meta_file: str, config: Dict) -> None:
     """
     Description: 
 
