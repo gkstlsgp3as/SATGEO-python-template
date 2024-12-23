@@ -80,7 +80,8 @@ project/
 │   │   ├── input.tif           # 입력 영상 샘플
 │   │   └── metainfo.json       # 영상 metadata   
 │   └── output/
-│       └── output.{tif/json}   # 알고리즘 실행 결과 샘플; tif, json, txt 등 
+│   │   └── output.{tif/json}   # 알고리즘 실행 결과 샘플; tif, json, txt 등
+│   └── Dockerfile              # 도커 컨테이너 생성 파일
 ├── code/                       # 실제 코드
 │   ├── utils/                  # 데이터 처리 등 기타 유틸리티 함수
 │   ├── models/                 # 모델 정의
