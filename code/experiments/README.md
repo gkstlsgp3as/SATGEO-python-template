@@ -7,8 +7,6 @@
    - Extensions > Remote-SSH 설치
    - VSCode > Ctrl+Shift+P 또는 F1 > Remote-SSH: Open SSH Configuration File > ```C:/Users/user/.ssh/config```  <br><br>
 
-
-
    ```
    Host GPU_master
        HostName 147.46.30.109
@@ -16,7 +14,7 @@
        port 7777
        # 각 행에 주석이 있으면 안됨. 주석 넣으려면 다음 줄로!
 
-   Host node03 # 할당된 노드
+   Host node03 # 사용할 노드
        HostName node03
        User username
        ForwardAgent yes
