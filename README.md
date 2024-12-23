@@ -62,10 +62,12 @@ project/
 │   ├── algorithm/
 │   │   ├── utils/              # 데이터 처리 등 기타 유틸리티 함수
 │   │   ├── models/             # 모델 정의  
-│   │   ├── algorithm.py        # 알고리즘; code/ 하위 함수 통합 버전
+│   │   ├── algorithm.py        # 알고리즘; code/ 하위 알고리즘1 통합 버전
 │   │   ├── requirements.txt            # 의존성 패키지 목록
 │   │   ├── .gitignore                  # git push 제외 목록
 │   │   └── README.md                   # 프로젝트 설명 파일: 설치 과정, 훈련/추론 명령어 등
+│   ├── algorithm2/
+│   │   ├── algorithm2.py        # 알고리즘; code/ 하위 알고리즘2 통합 버전
 │   ├── input/
 │   │   ├── input.tif           # 입력 영상 샘플
 │   │   └── metainfo.json       # 영상 metadata   
@@ -75,7 +77,8 @@ project/
 ├── code/                       # 실제 코드
 │   ├── utils/                  # 데이터 처리 등 기타 유틸리티 함수
 │   ├── models/                 # 모델 정의
-│   ├── experiments/            # 실험 스크립트: 주로 ipynb 노트북 파일
+│   ├── experiments/            # 실험: 주로 ipynb 노트북 파일
+│   ├── scripts/                # 실행 스크립트: .sh 파일 등
 │   ├── main.py                 # 메인 함수
 │   ├── requirements.txt            # 의존성 패키지 목록
 │   ├── .gitignore                  # git push 제외 목록
@@ -90,7 +93,7 @@ project/
 
 ---
 ## **3. 체크리스트**
-✅ **PEP8 스타일 준수**: 모든 코드가 Python의 PEP8 스타일 가이드를 준수하는지 확인
+✅ **PEP484 스타일 준수**: 모든 코드가 Python의 PEP484 스타일 가이드를 준수하는지 확인 -> ChatGPT 활용
 
 ✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정을 확인
 
