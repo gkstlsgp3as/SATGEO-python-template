@@ -1,7 +1,7 @@
 import torch.nn as nn
 import torch
 
-class ShipClsModel(nn.Module):
+class ShipClassificationModel(nn.Module):
     def __init__(self, config: tuple, output_dim: int) -> None:
         """
         Initializes the Ship Classification Model.
