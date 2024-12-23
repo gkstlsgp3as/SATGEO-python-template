@@ -68,7 +68,7 @@
 project/
 ├── deploy/                     # 배포용
 │   ├── algorithm/
-│   │   ├── utils/              # 기타 유틸리티 함수
+│   │   ├── utils/              # 데이터 처리 등 기타 유틸리티 함수
 │   │   ├── models/             # 모델 정의  
 │   │   ├── algorithm.py        # 알고리즘; code/ 하위 알고리즘1 통합 버전
 │   │   ├── requirements.txt    # 의존성 패키지 목록
