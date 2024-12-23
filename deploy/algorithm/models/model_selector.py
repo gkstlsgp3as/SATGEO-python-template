@@ -2,10 +2,10 @@ import torch
 from collections import namedtuple
 from typing import List, Any
 
-from models.shipclsmodel import Bottleneck, ShipClsModel
+from models.models import Bottleneck, ShipClassificationModel
 from utils.datasets import read_platform
 
-def create_model(model_config: namedtuple, classes: List[str], meta_file: str) -> ShipClsModel:
+def create_model(model_config: namedtuple, classes: List[str], meta_file: str) -> ShipClassificationModel:
     """
     Creates and loads the model with pre-trained weights based on the platform.
 
@@ -18,7 +18,7 @@ def create_model(model_config: namedtuple, classes: List[str], meta_file: str) -
         ShipClsModel: The initialized and pre-trained ship classification model.
     """
     OUTPUT_DIM = len(classes)
-    model = ShipClsModel(model_config, OUTPUT_DIM)
+    model = ShipClassificationModel(model_config, OUTPUT_DIM)
     
     platform = read_platform(meta_file)
     if platform not in ['ICEYE', 'K5']:  # 모델 없는 플랫폼 config file에 지정
