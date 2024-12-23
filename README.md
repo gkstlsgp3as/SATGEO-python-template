@@ -31,9 +31,9 @@
 | 데이터 전처리         | `preprocessing.py`        | 입력 데이터를 전처리하는 코드                |
 | 결과 후처리           | `postprocessing.py`       | 알고리즘 결과를 후처리하는 코드              |
 | 설정 파일             | `cfg.py`                  | 알고리즘 매개변수를 관리하는 설정 파일        |
-| 모델 정의             | `model.py`                | 모델의 구조 및 초기화 코드                   |
+| 모델 정의             | `models.py`                | 모델의 구조 및 초기화 코드                   |
 | 유틸리티 함수         | `utils.py`                | 공통으로 사용하는 유틸리티 함수 코드         |
-| 데이터셋 처리         | `dataset.py`              | 데이터셋 로드 및 처리 관련 코드              |
+| 데이터셋 처리         | `datasets.py`              | 데이터셋 로드 및 처리 관련 코드              |
 | 시각화 코드           | `visualization.py`        | 결과를 시각화하는 코드                       |
 
 - 예시: main.py, torch_utils.py, resnet_model.py, dataset.py 등
