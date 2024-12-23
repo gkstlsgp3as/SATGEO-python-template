@@ -22,15 +22,14 @@
        ProxyJump GPU_master
        ServerAliveInterval 60
 
-  - F1 > Remote-SSH: Connect to Host > node03 > 비밀번호 입력 (두 번)
+   - F1 > Remote-SSH: Connect to Host > node03 > 비밀번호 입력 (두 번)
    
 2. **가상환경 Kernel 선택 후 GPU 사용 가능 여부 확인**
    - 예: ```torch.cuda.is_available() >> True```
 
 3. **Slurm 상에서 Jupyter 사용이 인식되지 않으므로, 반드시 아래 명령어 실행**
-  ```plaintext
+   ```plaintext
    srun --gres=gpu --nodelist=node03 --pty bash -i
-  ```
 
 4. **가상환경 이름이 ~/.conda로 시작하지 않는 경우**
    - ```F1 > Select Notebook Kernel > Python Environments``` 에서 선택
