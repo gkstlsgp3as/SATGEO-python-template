@@ -9,9 +9,9 @@
 # 현재 일시 YYYYmmdd-HHMMSS
 TAG_DATE=$(date +%Y%m%d-%H%M%S)
 # Docker 이미지 빌드 및 태그 지정
-docker build -t mfms-app:$TAG_DATE .
+docker build -t app:$TAG_DATE .
 # -t: tag, . 현재 경로에서 dockerfile 실행
-docker build -t mfms-app:$TAG_DATE -f Dockerfile ```
+docker build -t app:$TAG_DATE -f Dockerfile ```
 
 #### 스크립트 권한 변경
 ```bash
@@ -58,7 +58,7 @@ docker run -d -t -i -p 8888:8888 app:1.0
 # VS Code 종료
 
 docker stop app:1.0
-docker run -v "/path/to/mount/data/:/root/data" -d -t -i -p 8888:8888 mfms-app:1.0     # /root/data 하위에 외부 데이터 마운트
+docker run -v "/path/to/mount/data/:/root/data" -d -t -i -p 8888:8888 app:1.0     # /root/data 하위에 외부 데이터 마운트
 ```
 
 #### Spyder IDE
