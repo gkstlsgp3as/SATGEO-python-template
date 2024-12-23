@@ -98,7 +98,7 @@ project/
 
 ---
 ## **3. 체크리스트**
-✅ **PEP 484 스타일 준수**: 모든 코드가 Python의 PEP 484 스타일 가이드를 준수하는지 확인 -> ChatGPT 활용
+✅ **PEP 484 스타일 준수**: 모든 코드가 Python의 PEP 484 스타일 가이드를 준수하는지 확인 - ChatGPT 활용
 
 ✅ **입출력 파일 구조 확인**: `input_dir`과 `output_dir` 경로 설정 확인
 
