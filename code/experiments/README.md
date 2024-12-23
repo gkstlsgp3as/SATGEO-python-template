@@ -20,7 +20,7 @@
        User username
        ForwardAgent yes
        ProxyJump GPU_master
-       ServerAliveInterval 60
+       ServerAliveInterval 60 ```
 
    - F1 > Remote-SSH: Connect to Host > node03 > 비밀번호 입력 (두 번)
    
