@@ -7,6 +7,7 @@
    - Extensions > Remote-SSH 설치
    - VSCode > Ctrl+Shift+P 또는 F1 > Remote-SSH: Open SSH Configuration File > `C:/Users/user/.ssh/config`
 
+
    ```plaintext
    Host GPU_master
        HostName 147.46.30.109
@@ -22,7 +23,7 @@
        ServerAliveInterval 60
   ```
 
-   - F1 > Remote-SSH: Connect to Host > node03 > 비밀번호 입력 (두 번)
+  - F1 > Remote-SSH: Connect to Host > node03 > 비밀번호 입력 (두 번)
    
 2. **가상환경 Kernel 선택 후 GPU 사용 가능 여부 확인**
    - 예: ```torch.cuda.is_available() >> True```
