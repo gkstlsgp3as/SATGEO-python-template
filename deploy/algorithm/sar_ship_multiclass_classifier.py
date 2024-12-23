@@ -54,7 +54,7 @@ def run(input_dir: str, output_dir: str, meta_file: str, classes: List[str], img
 
     # Load Model and Dataset
     model = select_model(classes, meta_file)
-    dataset = ShipClsDataset(input_dir, transform=img_transforms, classes=classes)
+    dataset = ShipClassificationDataset(input_dir, transform=img_transforms, classes=classes)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
