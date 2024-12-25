@@ -24,8 +24,14 @@ from torchvision import transforms
 
 from utils.datasets import ShipClsDataset
 from models.misc import select_model
-
 from cfg import ALGORITHM_NAME
+
+## TODO: 관련 DB 모델 및 서비스 import 
+from app.config.settings import settings
+from app.models.ecmwf_collect_hist import EcmwfCollectHist
+from app.service import ecmwf_collect_hist_service
+
+
 
 def run(input_dir: str, output_dir: str, meta_file: str, classes: List[str], img_size: int) -> None:
     """
@@ -56,6 +62,9 @@ def run(input_dir: str, output_dir: str, meta_file: str, classes: List[str], img
     model = select_model(classes, meta_file)
     dataset = ShipClassificationDataset(input_dir, transform=img_transforms, classes=classes)
 
+    ## TODO: DB 검색하는 서비스 호출 
+    # ecmwf_collect_hist_service.get_ecmwf_collect_history(db, transaction_id)
+
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
 
@@ -80,11 +89,34 @@ def run(input_dir: str, output_dir: str, meta_file: str, classes: List[str], img
         'PredClass': [classes[pred] for pred in predictions],
     })
 
+    ## TODO: 산출물을 DB 테이블 포맷으로 변경 -> 모델 활용
+    record = EcmwfPredictionHist(
+                prediction_standard_time=times[i],
+                prediction_time_timestamp=times[i],
+                latitude=Decimal(processed_data['latitude'][j].item()),
+                longitude=Decimal(processed_data['longitude'][k].item()),
+                latitude_length=float(processed_data['latitude'][j].item()),
+                longitude_length=float(processed_data['longitude'][k].item()),
+                wind_speed_real=float(processed_data['speed'][i, j, k].item()),
+                wind_direction_real=float(processed_data['dir'][i, j, k].item()),
+                wave_height_real=float(processed_data['waveh'][i, j, k].item()),
+                wave_direction_real=float(processed_data['waved'][i, j, k].item()),
+                relative_humidity=0.0,  # 필요한 값으로 교체
+                total_column_water_vapor=0.0,  # 필요한 값으로 교체
+                skin_temperature=0.0  # 필요한 값으로 교체
+            )
+            bulk_data.append(record)
+
     results_df.to_csv(output_dir, index=False)
+
+    ## TODO: DB 모델에 컬럼 삽입할 서비스 호출
+    # ecmwf_collect_hist_service.update_ecmwf_collect_history(db, collect_history)
 
     print(f"Results saved to {output_dir}")
     print(f"Done. Total Time: {1E3 * (time.time() - start_time):.1f}ms")
     print(f"Initialization Time: {1E3 * (init_time - start_time):.1f}ms")
+
+     
 
 
 if __name__ == "__main__":
