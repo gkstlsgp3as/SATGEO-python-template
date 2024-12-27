@@ -1,7 +1,7 @@
-from sqlalchemy import String, Float
 from sqlalchemy.orm import mapped_column, Mapped
 from app.config.db_session import Base
 
+from decimal import Decimal
 
 class SatelliteExtractionWind(Base):
   __tablename__ = "satellite_extraction_wind"
