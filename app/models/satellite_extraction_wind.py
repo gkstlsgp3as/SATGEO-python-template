@@ -1,4 +1,4 @@
-from sqlalchemy import String, Numeric, Float
+from sqlalchemy import String, Float
 from sqlalchemy.orm import mapped_column, Mapped
 from app.config.db_session import Base
 
