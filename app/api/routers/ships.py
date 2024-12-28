@@ -3,9 +3,17 @@ from app.config.settings import settings  # 필요한 파라미터 정의
 from app.config.db_connection import get_db
 
 # 해당하는 알고리즘, DB모델, DB서비스 import 
-from app.algorithm import 
-from app.models.
-from app.service import 
+from app.algorithm import s01_detect_ships, s02_estimate_ship_velocity, s03_correct_ais_time, s04_find_unidentified_ships, \
+                          s05_classify_unidentified_ships, s06_predict_routes_ship, s07_predict_routes_ais, \
+                          s08_generate_ais_distribution, s09_find_l1a, s10_predict_routes_mtn, \
+                          s11_calculate_ship_navigation_risk, s12_generate_ship_reports, s13_generate_area_risk_reports
+from app.models.sar_ship_identification import SarShipIdentification
+from app.models.sar_ship_unidentification import SarShipUnidentification
+from app.models.ship_prediction_route import ShipPredictionRoute
+from app.models.ship_voyage_risk_map import ShipVoyageRiskMap
+
+from app.service import sar_ship_identification_service, sar_ship_unidentification_service, \
+                        ship_prediction_route_service, ship_voyage_risk_map_service
 
 ## TODO
 # 1. 인자 처리 #1: 디렉토리 관련한 인자는 모두 config/settings에 정의하여 algorithm/ 하위 파일에 할당
@@ -21,22 +29,78 @@ from app.service import
 router = APIRouter()
 
 @router.get("/s01")
-def detect_ships(field: type = Query(),
+def detect_ships(satellite_sar_image_id: str = Query(...),
                       db: Session = Depends(get_db)):
 
-    logger.info(f"======[detect_ships] date_time: {date_time} ======")
-    w03_ready_to_use_noaa_cyclone.ready_to_use_noaa_cyclone(db, 48, date_time)
-    return {"max_hr": 48}
+    logger.info(f"======[detect_ships] detect_ships ~~ ======")
+    s01_detect_ships.detect_ships(db, satellite_sar_image_id)
+
+    logger.info(f"======[detect_ships] correct_ais_time ~~ ======")
+    s03_correct_ais_time.correct_ais_time(db, satellite_sar_image_id)
+
+    logger.info(f"======[detect_ships] find_unidentified_ships ~~ ======")
+    s04_find_unidentified_ships.find_unidentified_ships(db, satellite_sar_image_id)
+    return {"field": field}
+
 
 @router.get("/s02")
-def calculate_correction(correction_map_id: str = Query(),
+def estimate_ship_velocity(satellite_sar_image_id: str = Query(),
                          db: Session = Depends(get_db)):
-    w07_calculate_correction_map.calculate_correction(db, correction_map_id)
-    return {"correction_map_id": correction_map_id}
+    logger.info(f"======[estimate_ship_velocity] find_l1a ~~ ======")
+    s09_find_l1a.find_l1a(db, satellite_sar_image_id)
+                           
+    logger.info(f"======[estimate_ship_velocity] estimate_ship_velocity ~~ ======")
+    s02_estimate_ship_velocity.estimate_ship_velocity(db, satellite_sar_image_id)
 
-
-@router.get("/s05")
-def classify_unidentified_ships(satellite_sar_image_id: str = Query(),
-                              db: Session = Depends(get_db)):
+    logger.info(f"======[estimate_ship_velocity] classify_unidentified_ships ~~ ======")
     s05_classify_unidentified_ships.classify_unidentified_ships(db, satellite_sar_image_id)
+
     return {"satellite_sar_image_id": satellite_sar_image_id}
+
+
+@router.get("/s06")
+def s06_predict_routes_ship(interest_ship_id: str = Query(),
+                              db: Session = Depends(get_db)):
+    s06_predict_routes_ship.predict_routes_ship(db, interest_ship_id)
+    return {"interest_ship_id": interest_ship_id}
+
+
+@router.get("/s07")
+def s07_predict_routes_ais(interest_ship_id: str = Query(),
+                              db: Session = Depends(get_db)):
+    s07_predict_routes_ais.predict_routes_ais(db, interest_ship_id)
+    return {"interest_ship_id": interest_ship_id}
+
+@router.get("/s08")
+def s08_generate_ais_distribution(date: str = Query(),
+                              db: Session = Depends(get_db)):
+    s08_generate_ais_distribution.generate_ais_distribution(db, date)
+    return {"date": date}
+
+
+@router.get("/s10")
+def s10_predict_routes_mtn(interest_ship_id: str = Query(),
+                              db: Session = Depends(get_db)):
+    s10_predict_routes_mtn.predict_routes_mtn(db, interest_ship_id)
+    return {"interest_ship_id": interest_ship_id}
+
+
+@router.get("/s11")
+def s11_calculate_ship_navigation_risk(voyage_risk_map_id: str = Query(),
+                                        mmsi_process: str = Query(),
+                                       db: Session = Depends(get_db)):
+    s11_calculate_ship_navigation_risk.calculate_ship_navigation_risk(db, voyage_risk_map_id, mmsi_process)
+    return {"voyage_risk_map_id": voyage_risk_map_id, "mmsi_process": mmsi_process}
+
+
+@router.get("/s12")
+def s12_generate_ship_risk_reports(interest_ship_id: str = Query(),
+                              db: Session = Depends(get_db)):
+    s12_generate_ship_risk_reports.generate_ship_risk_reports(db, interest_ship_id)
+    return {"interest_ship_id": interest_ship_id}
+
+@router.get("/s13")
+def s13_generate_area_risk_reports(interest_area_id: str = Query(),
+                              db: Session = Depends(get_db)):
+    s13_generate_area_risk_reports.generate_area_risk_reports(db, interest_area_id)
+    return {"interest_area_id": interest_area_id}
