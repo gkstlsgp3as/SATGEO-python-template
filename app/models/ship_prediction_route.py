@@ -1,5 +1,5 @@
 from sqlalchemy import String, Numeric, JSON, TIMESTAMP
-from sqlalchemy.dialects.postgresql import GEOMETRY
+from geoalchemy2 import Geometry
 from sqlalchemy.orm import mapped_column, Mapped
 from app.config.db_session import Base
 
@@ -21,4 +21,4 @@ class ShipPredictionRoute(Base):
   route_distance: Mapped[float] = mapped_column(Float)
   route_requirement_second: Mapped[float] = mapped_column(Float)
   route: Mapped[dict] = mapped_column(JSON, nullable=False)
-  route_geom: Mapped[str] = mapped_column(GEOMETRY)
+  route_geom: Mapped[str] = mapped_column(Geometry("GEOMETRY"))
