@@ -19,12 +19,21 @@ class SampleModel(Base): # 수정
     ...
 
 ## 필드 종류 예시
-    dates: Mapped[List[str]] = mapped_column(ARRAY(String))            # List[str]
-    status: Mapped[str] = mapped_column(nullable=False)                # null값 비허용, str
-    try_number: Mapped[int] = mapped_column(default=0)                 # 디폴트 값 정의, int 
-    created_at: Mapped[datetime] = mapped_column(TIMESTAMP, nullable=False)    # 시간
-    longitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)   # 십진수, primary key, index=True
-    latitude: Mapped[float] = mapped_column(primary_key=True)                  # primary key, index=False
-    longitude_length: Mapped[float] = mapped_column()                  # float
+    1) Primary Key
+    longitude: Mapped[Decimal] = mapped_column(primary_key=True)   
+    # 자동으로 index=True이므로 설정 불필요; 다른 필드에서 검색이 자주되는경우, index=True 설정
+    # primary key는 이미 null이 비허용되므로 명시하지 않아도 됨 
+
+    2) 타입별 정의방법
+    field: Mapped[str] = mapped_column()                               # string
+    field: Mapped[float] = mapped_column(Float)                        # float
+    field: Mapped[int] = mapped_column()                               # int
+    field: Mapped[List[str]] = mapped_column(ARRAY(String))            # List[str]
+    field: Mapped[Decimal] = mapped_column()                           # 십진수; 위도/경도
+    field: Mapped[datetime] = mapped_column(TIMESTAMP)                 # datetime
+    
+    3) 기타 설정
+    field: Mapped[type] = mapped_column(nullable=False)                # null값 비허용
+    field: Mapped[type] = mapped_column(default=0)                     # 디폴트 값 정의
     
     
