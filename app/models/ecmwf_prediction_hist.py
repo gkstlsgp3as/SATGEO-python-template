@@ -10,10 +10,10 @@ class EcmwfPredictionHist(Base):
     __tablename__ = "ecmwf_prediction_hist"
     __table_args__ = {'schema': 'gateway'}
 
-    prediction_standard_time: Mapped[datetime] = mapped_column(primary_key=True, index=True)
-    prediction_time: Mapped[datetime] = mapped_column(primary_key=True, index=True)
-    longitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)
-    latitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)
+    prediction_standard_time: Mapped[datetime] = mapped_column(primary_key=True)
+    prediction_time: Mapped[datetime] = mapped_column(primary_key=True)
+    longitude: Mapped[Decimal] = mapped_column(primary_key=True)
+    latitude: Mapped[Decimal] = mapped_column(primary_key=True)
     longitude_length: Mapped[float] = mapped_column()
     latitude_length: Mapped[float] = mapped_column()
     wind_speed_real: Mapped[float] = mapped_column()
