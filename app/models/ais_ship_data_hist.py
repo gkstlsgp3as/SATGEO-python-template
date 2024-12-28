@@ -11,9 +11,9 @@ class AisShipDataHist(Base):
 
   mmsi_process: Mapped[str] = mapped_column(String(20), primary_key=True)
   timestamp: Mapped[datetime] = mapped_column(TIMESTAMP, primary_key=True)
-  mmsi: Mapped[str] = mapped_column(String(20))
+  mmsi: Mapped[str] = mapped_column(String(20), nullable=False)
   imo_no: Mapped[str] = mapped_column(String(15))
-  mmsi_origin: Mapped[str] = mapped_column(String(20))
+  mmsi_origin: Mapped[str] = mapped_column(String(20), nullable=False)
   imo_no_origin: Mapped[str] = mapped_column(String(15))
   position_prcss_sttus_ty: Mapped[str] = mapped_column(String(2))
   static_prcss_sttus_ty: Mapped[str] = mapped_column(String(2))
