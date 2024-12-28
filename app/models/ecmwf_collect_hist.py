@@ -12,7 +12,7 @@ class EcmwfCollectHist(Base):
     __tablename__ = "ecmwf_collect_hist"
     __table_args__ = {'schema': 'gateway'}
 
-    transaction_id: Mapped[str] = mapped_column(primary_key=True, index=True)
+    transaction_id: Mapped[str] = mapped_column(primary_key=True)
     request_dates: Mapped[List[str]] = mapped_column(ARRAY(String))
     status: Mapped[str] = mapped_column(nullable=False)
     task_id: Mapped[str] = mapped_column()
