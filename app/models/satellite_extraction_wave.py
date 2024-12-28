@@ -5,10 +5,11 @@ from decimal import Decimal
 
 class SatelliteExtractionWave(Base):
     __tablename__ = "satellite_extraction_wave"
+    __table_args__ = {'schema': 'gateway'}
 
-    satellite_eo_image_id: Mapped[str] = mapped_column(primary_key=True, index=True)
-    longitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)
-    latitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)
+    satellite_eo_image_id: Mapped[str] = mapped_column(primary_key=True)
+    longitude: Mapped[Decimal] = mapped_column(primary_key=True)
+    latitude: Mapped[Decimal] = mapped_column(primary_key=True)
     longitude_length: Mapped[float] = mapped_column(Float)
     latitude_length: Mapped[float] = mapped_column(Float)
     wave_length: Mapped[float] = mapped_column(Float)
