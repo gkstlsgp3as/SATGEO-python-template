@@ -11,12 +11,12 @@
    - [commit: 변경사항 저장](#17-commit-변경사항-저장)
    - [close: 세션 닫기](#18-close-세션-닫기)
 2. [bulk 메서드](#2-bulk-메서드)
-   - [bulk_save_objects: 여러 객체 저장](#31-bulk_save_objects-여러-객체-저장)
-   - [bulk_insert_mappings: 딕셔너리 기반 데이터 삽입](#32-bulk_insert_mappings-딕셔너리-기반-데이터-삽입)
-   - [bulk_update_mappings: 딕셔너리 기반 데이터 업데이트](#33-bulk_update_mappings-딕셔너리-기반-데이터-업데이트)
+   - [bulk_save_objects: 여러 객체 저장](#21-bulk_save_objects-여러-객체-저장)
+   - [bulk_insert_mappings: 딕셔너리 기반 데이터 삽입](#22-bulk_insert_mappings-딕셔너리-기반-데이터-삽입)
+   - [bulk_update_mappings: 딕셔너리 기반 데이터 업데이트](#23-bulk_update_mappings-딕셔너리-기반-데이터-업데이트)
 3. [db.commit()](#3-dbcommit)
-   - [db.commit() 사용 이유](#21-dbcommit-사용-이유)
-   - [db.commit() 사용 예시](#22-dbcommit-사용-예시)
+   - [db.commit() 사용 이유](#31-dbcommit-사용-이유)
+   - [db.commit() 사용 예시](#32-dbcommit-사용-예시)
 
 ---
 
