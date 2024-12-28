@@ -21,7 +21,7 @@ class SampleModel(Base): # 수정
 ## 필드 종류 예시
     1) 타입별 정의방법
     field: Mapped[str] = mapped_column()                               # string
-    field: Mapped[float] = mapped_column(Float)                        # float
+    field: Mapped[float] = mapped_column(Float)                        # float; 실수형에 REAL, FLOAT, DOUBLE, NUMERIC 등 여러 타입이 존재하여 별도로 명시
     field: Mapped[int] = mapped_column()                               # int
     field: Mapped[List[str]] = mapped_column(ARRAY(String))            # List[str]
     field: Mapped[Decimal] = mapped_column()                           # 십진수; 위도/경도
