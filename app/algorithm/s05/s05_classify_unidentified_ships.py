@@ -28,7 +28,6 @@ from utils.cfg import ALGORITHM_NAME
 
 ## TODO: 관련 DB 모델 및 서비스 import 
 from app.config.settings import settings
-from app.models. import 
 from app.service import 
 
 
@@ -85,26 +84,15 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
         _, top_pred = y_pred.topk(2, 1)
         predictions.append(top_pred[0][0].detach().cpu())
 
-    # Save Classification Results
+    ## TODO: 산출물을 DB 테이블 포맷으로 변경 -> 모델 참고
     results_df = pd.DataFrame({
         'FileName': dataset.img_files,
         'TrueClass': [classes[label] for label in labels],
         'PredClass': [classes[pred] for pred in predictions],
     })
 
-    ## TODO: 산출물을 DB 테이블 포맷으로 변경 -> 모델 활용
-    for i, pred in enumerate(predictions):
-        record = SarShipUnidentification(
-                satellite_sar_image_id=satellite_sar_image_id,
-                unidentification_ship_id=i,
-                
-            )
-            bulk_data.append(record)
-
-        results_df.to_csv(output_dir, index=False)
-
     ## TODO: DB 모델에 컬럼 삽입할 서비스 호출
-    # ecmwf_collect_hist_service.update_ecmwf_collect_history(db, collect_history)
+    # ecmwf_collect_hist_service.update_ecmwf_collect_history(db, results_df)
 
     print(f"Results saved to {output_dir}")
     print(f"Done. Total Time: {1E3 * (time.time() - start_time):.1f}ms")
@@ -112,7 +100,7 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
 
      
 
-
+'''
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=ALGORITHM_NAME)
     parser.add_argument('-i', "--input_dir", type=str, required=True, default="/platform/data/inputs/, help="Path to input images")
@@ -124,4 +112,4 @@ if __name__ == "__main__":
     args.classes = ['Cargo', 'Fishing', 'Sailing', 'Tanker', 'TugTow'] 
 
     classify_unidentified_ships(**vars(args)
-
+'''
