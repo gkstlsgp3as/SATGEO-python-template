@@ -19,16 +19,14 @@ algorithm_info = {
     "description": "A deep learning-based algorithm for classifying ships from SAR images."
 }
 
-# Output Parameters
-output_params = {
-    "epsg": 4326,             # EPSG code for geospatial outputs
-    "color_map": {            # Color mapping for visualizations
+epsg = "4326"             # EPSG code for geospatial outputs
+color_map = {            # Color mapping for visualizations
         "Cargo": (255, 0, 0),    # Red
         "Fishing": (0, 255, 0),  # Green
         "Tanker": (0, 0, 255),   # Blue
         "Sailing": (255, 255, 0),  # Yellow
         "TugTow": (255, 0, 255)   # Magenta
-    },
-    "file_format": "tif",     # Output file format (e.g., tif, png)
-    "visualize_results": True # Whether to generate visualization of results
-}
+    }
+
+classes = ['Cargo', 'Fishing', 'Sailing', 'Tanker', 'TugTow'] 
+img_size = 224
