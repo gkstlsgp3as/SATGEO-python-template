@@ -27,3 +27,11 @@ def 알고리즘_명(field: type = Query(alias="검색할때_사용할_이름"),
     logger.info(f"======[알고리즘_명] field: {field} ======")
     알고리즘_py_파일명.알고리즘_명(db, field)
     return {"field": nn}
+
+@router.get("/알고리즘코드2")
+def 알고리즘_명2(field: type = Query(alias="검색할때_사용할_이름"),
+                      db: Session = Depends(get_db)):
+
+    logger.info(f"======[알고리즘_명2] field: {field} ======")
+    알고리즘_py_파일명2.알고리즘_명2(db, field)
+    return {"field": nn}
