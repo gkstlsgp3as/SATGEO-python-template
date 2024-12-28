@@ -13,14 +13,16 @@
     @Detail    :
 """
 
-# Algorithm Information
-algorithm_info = {
-    "name": "Ship Classification Model",
-    "description": "A deep learning-based algorithm for classifying ships from SAR images."
-}
+import os
+from easydict import EasyDict
 
-epsg = "4326"             # EPSG code for geospatial outputs
-color_map = {            # Color mapping for visualizations
+
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+Cfg = EasyDict()
+
+Cfg.epsg = "4326"             # EPSG code for geospatial outputs
+Cfg.color_map = {            # Color mapping for visualizations
         "Cargo": (255, 0, 0),    # Red
         "Fishing": (0, 255, 0),  # Green
         "Tanker": (0, 0, 255),   # Blue
@@ -28,5 +30,5 @@ color_map = {            # Color mapping for visualizations
         "TugTow": (255, 0, 255)   # Magenta
     }
 
-classes = ['Cargo', 'Fishing', 'Sailing', 'Tanker', 'TugTow'] 
-img_size = 224
+Cfg.classes = ['Cargo', 'Fishing', 'Sailing', 'Tanker', 'TugTow'] 
+Cfg.img_size = 224
