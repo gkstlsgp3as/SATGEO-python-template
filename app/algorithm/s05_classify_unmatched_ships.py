@@ -2,10 +2,10 @@
 '''
 @Time          : 2024/12/18 00:00
 @Author        : Shinhye Han
-@File          : sar_ship_multiclass_classifier.py
+@File          : s05_classify_unmatched_ships.py
 @Noice         : 
 @Description   : Perform multi-class classification on ship chips from SAR.
-@How to use    : python sar_ship_multiclass_classifier.py --input_dir {image path} --meta_file {metafile path}
+@How to use    : python s05_classify_unmatched_ships.py --input_dir {image path} --meta_file {metafile path}
 
 @Modificattion :
     @Author    :
