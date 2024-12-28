@@ -6,8 +6,8 @@ class SarShipIdentification(Base):
   __tablename__ = "sar_ship_identification"
   __table_args__ = {'schema': 'gateway'}
 
-  satellite_sar_image_id: Mapped[str] = mapped_column(primary_key=True, index=True)
-  identification_ship_id: Mapped[str] = mapped_column(primary_key=True, index=True)
+  satellite_sar_image_id: Mapped[str] = mapped_column(primary_key=True)
+  identification_ship_id: Mapped[str] = mapped_column(primary_key=True)
   longitude: Mapped[Decimal] = mapped_column()
   latitude: Mapped[Decimal] = mapped_column()
   interpolation_cog: Mapped[float] = mapped_column(Float)
