@@ -21,10 +21,10 @@ from app.service import
 router = APIRouter()
 
 @router.get("/s01")
-def detect_ships(date_time: str = Query(alias="date-time"),
+def detect_ships(field: type = Query(),
                       db: Session = Depends(get_db)):
 
-    logger.info(f"======[noaa_cyclone] date_time: {date_time} ======")
+    logger.info(f"======[detect_ships] date_time: {date_time} ======")
     w03_ready_to_use_noaa_cyclone.ready_to_use_noaa_cyclone(db, 48, date_time)
     return {"max_hr": 48}
 
@@ -35,8 +35,8 @@ def calculate_correction(correction_map_id: str = Query(),
     return {"correction_map_id": correction_map_id}
 
 
-@router.get("/s03")
-def calculate_navigation_risk(voyage_risk_map_id: str = Query(),
+@router.get("/s05")
+def classify_unidentified_ships(satellite_sar_image_id: str = Query(),
                               db: Session = Depends(get_db)):
-    w08_calculate_navigation_risk.calculate_navigation_risk(db, voyage_risk_map_id)
-    return {"voyage_risk_map_id": voyage_risk_map_id}
+    s05_classify_unidentified_ships.classify_unidentified_ships(db, satellite_sar_image_id)
+    return {"satellite_sar_image_id": satellite_sar_image_id}
