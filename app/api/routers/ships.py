@@ -13,7 +13,8 @@ from app.models.ship_prediction_route import ShipPredictionRoute
 from app.models.ship_voyage_risk_map import ShipVoyageRiskMap
 
 from app.service import sar_ship_identification_service, sar_ship_unidentification_service, \
-                        ship_prediction_route_service, ship_voyage_risk_map_service
+                        ship_prediction_route_service, ship_voyage_risk_map_service, \
+                        ship_route_safety_report_service, area_route_safety_report_service
 
 ## TODO
 # 1. 인자 처리 #1: 디렉토리 관련한 인자는 모두 config/settings에 정의하여 algorithm/ 하위 파일에 할당
