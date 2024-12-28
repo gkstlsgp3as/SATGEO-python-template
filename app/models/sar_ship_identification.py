@@ -8,8 +8,8 @@ class SarShipIdentification(Base):
 
   satellite_sar_image_id: Mapped[str] = mapped_column(primary_key=True)
   identification_ship_id: Mapped[str] = mapped_column(primary_key=True)
-  longitude: Mapped[Decimal] = mapped_column()
-  latitude: Mapped[Decimal] = mapped_column()
+  longitude: Mapped[Decimal] = mapped_column(nullable=False)
+  latitude: Mapped[Decimal] = mapped_column(nullable=False)
   interpolation_cog: Mapped[float] = mapped_column(Float)
   interpolation_sog: Mapped[float] = mapped_column(Float)
   type: Mapped[str] = mapped_column()
