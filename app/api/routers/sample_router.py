@@ -15,6 +15,10 @@ router = APIRouter()
 # 2. 인자 처리 #2: 그 외 인자는 Query로 받도록 수정 -> 더 자세한 사항은 README.md 파일 참조 
 # 예) max_hr: int = Query(alias="max-hour")
 # 3. 인자 처리 #3: db: Session = Depends(get_db) 추가 -> 테이블 접근할 수 있는 DB 연결 
+# 4. 함수 호출: algorithm/ 하위의 파일 호출 
+# 예) w03_ready_to_use_ecmwf.ready_to_use_ecmwf(db, max_hr)
+# 5. 리턴값 지정: 로그에서 확인하고 싶은 값 리턴 혹은 wait를 확인하기 위해 필요한 값 리턴
+# 예) return {"max_hr": max_hr}
 
 @router.get("/알고리즘코드")
 def 알고리즘_명(field: type = Query(alias="검색할때_사용할_이름"),
