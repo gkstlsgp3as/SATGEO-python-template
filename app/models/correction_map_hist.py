@@ -11,9 +11,9 @@ class CorrectionMapHist(Base):
     # __table_args__ = {'schema': 'public'}
     __table_args__ = {'schema': 'gateway'}
 
-    correction_map_id: Mapped[str] = mapped_column(primary_key=True, index=True)
-    longitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)
-    latitude: Mapped[Decimal] = mapped_column(primary_key=True, index=True)
+    correction_map_id: Mapped[str] = mapped_column(primary_key=True)
+    longitude: Mapped[Decimal] = mapped_column(primary_key=True)
+    latitude: Mapped[Decimal] = mapped_column(primary_key=True)
     longitude_length: Mapped[float] = mapped_column()
     latitude_length: Mapped[float] = mapped_column()
     wind_speed: Mapped[float] = mapped_column()
