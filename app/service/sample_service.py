@@ -41,7 +41,7 @@ def bulk_insert_sample(db: Session, bulk_data: pd.DataFrame):
 from sqlalchemy.dialects.postgresql import insert
 from app.models.sample_model_class import SampleModelClass
 
-def update_sample(db: Session, bulk_data: pd.DataFrame) -> int:
+def bulk_upsert_sample(db: Session, bulk_data: pd.DataFrame) -> int:
     stmt = insert(SampleModelClass).values(bulk_data.to_dict(orient='records'))  
     # pandas.DataFrame을 dict로 변환 후 데이터 삽입 쿼리문 생성 (SQL의 INSERT문)
 
