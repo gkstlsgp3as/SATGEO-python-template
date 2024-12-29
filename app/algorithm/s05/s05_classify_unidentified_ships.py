@@ -23,7 +23,7 @@ import torch
 from torchvision import transforms
 
 from utils.datasets import ShipClsDataset
-from models.misc import select_model
+from models.models import select_model
 from utils.cfg import ALGORITHM_NAME
 
 ## TODO: 관련 DB 모델 및 서비스 import 
