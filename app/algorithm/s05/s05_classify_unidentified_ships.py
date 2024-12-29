@@ -48,7 +48,7 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
     
     start_time = time.time()
 
-    ## sar_satellite_image_id에 해당하는 컬럼 query
+    ## DB서비스호출: sar_satellite_image_id에 해당하는 컬럼 query
     data = sar_ship_unidentification_service.get_sar_ship_unidentification(db, satellite_sar_image_id)
     data_dict = [record.__dict__ for record in data]  # ORM 객체를 딕셔너리로 변환
 
@@ -68,9 +68,6 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
     model = select_model(classes, meta_file)
     dataset = ShipClassificationDataset(input_dir, transform=img_transforms, classes=classes)
 
-    ## TODO: DB 검색하는 서비스 호출 
-    # ecmwf_collect_hist_service.get_ecmwf_collect_history(db, transaction_id)
-
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     model = model.to(device)
 
@@ -88,20 +85,20 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
         _, top_pred = y_pred.topk(2, 1)
         predictions.append(top_pred[0][0].detach().cpu())
 
-    ## TODO: 산출물을 DB 테이블 포맷으로 변경 -> 모델 참고
     results_df = pd.DataFrame({
         'FileName': dataset.img_files,
         'TrueClass': [classes[label] for label in labels],
         'PredClass': [classes[pred] for pred in predictions],
     })
-    
+
+    # DB 검색 딕셔너리 일부 변경 
     for record in data_dict:
-        record['prediction_ship_type'] = classes[record['prediction_ship_type']]  # 필요한 값 변환
+        record['prediction_ship_type'] = classes[record['prediction_ship_type']]  
 
     # DataFrame 생성
     df = pd.DataFrame(data_dict)
 
-    # bulk insert
+    ## DB서비스호출: 필드 업데이트
     sar_ship_unidentification_service.bulk_upsert_sar_ship_unidentification(db, df)
 
     print(f"Results saved to {output_dir}")
