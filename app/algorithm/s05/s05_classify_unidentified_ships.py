@@ -28,7 +28,7 @@ from utils.cfg import ALGORITHM_NAME
 
 ## TODO: 관련 DB 모델 및 서비스 import 
 from app.config.settings import settings
-from app.service import 
+from app.service import sar_ship_unidentification_service
 
 
 def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> None:
@@ -47,6 +47,10 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
     meta_file = settings.S05_META_FILE
     
     start_time = time.time()
+
+    ## sar_satellite_image_id에 해당하는 컬럼 query
+    data = sar_ship_unidentification_service.get_sar_ship_unidentification(db, satellite_sar_image_id)
+    data_dict = [record.__dict__ for record in data]  # ORM 객체를 딕셔너리로 변환
 
     # Image Preprocessing
     img_transforms = transforms.Compose([
@@ -90,9 +94,15 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
         'TrueClass': [classes[label] for label in labels],
         'PredClass': [classes[pred] for pred in predictions],
     })
+    
+    for record in data_dict:
+        record['prediction_ship_type'] = classes[record['prediction_ship_type']]  # 필요한 값 변환
 
-    ## TODO: DB 모델에 컬럼 삽입할 서비스 호출
-    # ecmwf_collect_hist_service.update_ecmwf_collect_history(db, results_df)
+    # DataFrame 생성
+    df = pd.DataFrame(data_dict)
+
+    # bulk insert
+    sar_ship_unidentification_service.bulk_upsert_sar_ship_unidentification(db, df)
 
     print(f"Results saved to {output_dir}")
     print(f"Done. Total Time: {1E3 * (time.time() - start_time):.1f}ms")
