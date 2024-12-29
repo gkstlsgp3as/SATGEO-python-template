@@ -99,17 +99,16 @@ def classify_unidentified_ships(db: Session, satellite_sar_image_id: str) -> Non
     print(f"Initialization Time: {1E3 * (init_time - start_time):.1f}ms")
 
      
-
 '''
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=ALGORITHM_NAME)
     parser.add_argument('-i', "--input_dir", type=str, required=True, default="/platform/data/inputs/, help="Path to input images")
     parser.add_argument('-o', "--output_dir", type=str, required=True, default="/platform/data/outputs/predictions.csv", help="Path to save output CSV")
     parser.add_argument('-m', '--meta_file', type=str, required=True, help="Path to meta information file")
-    parser.add_argument('-s', '--img_size', type=int, default=224, help="Image size for preprocessing")
-
+    
     args = parser.parse_args()
-    args.classes = ['Cargo', 'Fishing', 'Sailing', 'Tanker', 'TugTow'] 
+    #args.img_size = 224
+    #args.classes = ['Cargo', 'Fishing', 'Sailing', 'Tanker', 'TugTow'] 
 
     classify_unidentified_ships(**vars(args)
 '''
