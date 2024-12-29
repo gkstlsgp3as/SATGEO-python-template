@@ -11,7 +11,7 @@ def get_sar_ship_unidentification(db: Session, satellite_sar_image_id: str) -> L
 
 # --------------------------------------------------------------------------------------------
 ## 데이터 삽입 시 중복 처리
-def update_sar_ship_unidentification(db: Session, bulk_data: pd.DataFrame) -> int:
+def bulk_upsert_sar_ship_unidentification(db: Session, bulk_data: pd.DataFrame) -> int:
     stmt = insert(SarShipUnidentification).values(bulk_data.to_dict(orient='records'))  
     # pandas.DataFrame을 dict로 변환 후 데이터 삽입 쿼리문 생성 (SQL의 INSERT문)
 
