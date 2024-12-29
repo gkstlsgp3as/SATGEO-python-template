@@ -73,21 +73,21 @@ def s07_predict_routes_ais(interest_ship_id: str = Query(),
     return {"interest_ship_id": interest_ship_id}
 
 @router.get("/s08")
-def s08_generate_ais_distribution(date: str = Query(),
+def generate_ais_distribution(date: str = Query(),
                               db: Session = Depends(get_db)):
     s08_generate_ais_distribution.generate_ais_distribution(db, date)
     return {"date": date}
 
 
 @router.get("/s10")
-def s10_predict_routes_mtn(interest_ship_id: str = Query(),
+def predict_routes_mtn(interest_ship_id: str = Query(),
                               db: Session = Depends(get_db)):
     s10_predict_routes_mtn.predict_routes_mtn(db, interest_ship_id)
     return {"interest_ship_id": interest_ship_id}
 
 
 @router.get("/s11")
-def s11_calculate_ship_navigation_risk(voyage_risk_map_id: str = Query(),
+def calculate_ship_navigation_risk(voyage_risk_map_id: str = Query(),
                                         mmsi_process: str = Query(),
                                        db: Session = Depends(get_db)):
     s11_calculate_ship_navigation_risk.calculate_ship_navigation_risk(db, voyage_risk_map_id, mmsi_process)
@@ -95,13 +95,13 @@ def s11_calculate_ship_navigation_risk(voyage_risk_map_id: str = Query(),
 
 
 @router.get("/s12")
-def s12_generate_ship_risk_reports(interest_ship_id: str = Query(),
+def generate_ship_risk_reports(interest_ship_id: str = Query(),
                               db: Session = Depends(get_db)):
     s12_generate_ship_risk_reports.generate_ship_risk_reports(db, interest_ship_id)
     return {"interest_ship_id": interest_ship_id}
 
 @router.get("/s13")
-def s13_generate_area_risk_reports(interest_area_id: str = Query(),
+def generate_area_risk_reports(interest_area_id: str = Query(),
                               db: Session = Depends(get_db)):
     s13_generate_area_risk_reports.generate_area_risk_reports(db, interest_area_id)
     return {"interest_area_id": interest_area_id}
