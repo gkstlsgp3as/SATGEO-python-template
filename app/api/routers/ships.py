@@ -40,8 +40,8 @@ def detect_ships(satellite_sar_image_id: str = Query(...),
     s03_correct_ais_time.correct_ais_time(db, satellite_sar_image_id)
 
     logger.info(f"======[detect_ships] find_unidentified_ships ~~ ======")
-    s04_find_unidentified_ships.find_unidentified_ships(db, satellite_sar_image_id)
-    return {"field": field}
+    status = s04_find_unidentified_ships.find_unidentified_ships(db, satellite_sar_image_id)
+    return {"status": status} # 미식별 선박이 없는 경우, 'no_unidentified' return해서 S02 실행하지 않도록; 미식별선박 존재하는 경우, 'completed' 
 
 
 @router.get("/s02")
