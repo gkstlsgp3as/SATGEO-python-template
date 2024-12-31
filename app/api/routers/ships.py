@@ -35,10 +35,12 @@ def detect_ships(satellite_sar_image_id: str = Query(...),
 
     logger.info(f"======[detect_ships] detect_ships ~~ ======")
     s01_detect_ships.detect_ships(db, satellite_sar_image_id)
-
+    #if status == 'failed':
+    #    return {"status": status}
     logger.info(f"======[detect_ships] correct_ais_time ~~ ======")
     s03_correct_ais_time.correct_ais_time(db, satellite_sar_image_id)
-
+    #if status == 'failed':
+    #    return {"status": status}
     logger.info(f"======[detect_ships] find_unidentified_ships ~~ ======")
     status = s04_find_unidentified_ships.find_unidentified_ships(db, satellite_sar_image_id)
     return {"status": status} # 미식별 선박이 없는 경우, 'no_unidentified' return해서 S02 실행하지 않도록; 미식별선박 존재하는 경우, 'completed' 
