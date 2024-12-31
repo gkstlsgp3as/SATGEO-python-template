@@ -193,7 +193,7 @@ def w08_api_call(execution_date, **kwargs):
 
 
 with DAG(
-        'n_kcgsa_risk-mapping_dag_1h',
+        'n_kcgsa_risk-mapping_dag_h1',
         default_args={
             'owner': 'airflow',
             'start_date': datetime(2024, 9, 28),
