@@ -22,9 +22,9 @@ def s01_check_shipdet_branch(**kwargs):
     
     status = ti.xcom_pull(key='s01_status')
 
-    # 조건 만족 시 s01 task 로 진행, 아니면 s1_end_task 에서 종료
+    # 조건 만족 시 s02 task 로 진행, 아니면 s1_end_task 에서 종료
     if status:       # 미식별 선박 존재 시 
-        return 's01'
+        return 's02'
     else:
         return 's01_end_task'
 
