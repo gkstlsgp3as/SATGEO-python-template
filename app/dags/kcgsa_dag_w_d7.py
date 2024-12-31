@@ -50,10 +50,12 @@ def w02_api_call(execution_date, **kwargs):
 
 
 def w06_api_call(execution_date, **kwargs):
-    formatted_date = execution_date.strftime('%Y%m%d%H') + '0000'
+    ti = kwargs['ti']
+    formatted_date = execution_date.strftime('%Y%m%d')
     api_path = '/api/risk-mappings/w06'
     api_params = {
-        'correction_map_id': formatted_date
+        'dates': formatted_date,
+        'correction_map_id': ti.correction_map_id  
     }
 
     requests.get(host_path + api_path, params=api_params)
