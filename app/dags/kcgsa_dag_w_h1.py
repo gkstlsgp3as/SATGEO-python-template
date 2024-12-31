@@ -176,7 +176,7 @@ def w07_api_call(execution_date, **kwargs):
     formatted_date = execution_date.strftime('%Y%m%d%H') + '0000'
     api_path = '/api/risk-mappings/w07'
     api_params = {
-        'correction_map_id': formatted_date
+        'voyage_risk_map_id': formatted_date    # 작동 시간으로 해당 맵의 id를 생성하도록 되어있어서 이렇게 두신걸까요? 
     }
 
     requests.get(host_path + api_path, params=api_params)
