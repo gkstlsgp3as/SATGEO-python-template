@@ -91,6 +91,47 @@ def w01_noaa_async_api_call(execution_date, **kwargs):
         print('w01_async_api_call failed')
 
 
+def w01_kma_check_api_call(**kwargs):
+    ti = kwargs['ti']
+    api_path = '/api/risk-mappings/w01/kma/task-status/'
+    api_params = {
+        'task_id': 'w01_kma',
+        'run_id': ti.run_id
+    }
+    transaction_id = ti.xcom_pull(key='w01_kma_transaction_id')
+
+    response = requests.get(host_path + api_path + transaction_id, params=api_params)
+    if response.status_code == 200:
+        data = response.json()
+        print(data)
+        if data is not None and 'status' in data:
+            if data['status'] == 'completed':
+                return True
+        else:
+            return False
+    else:
+        print(f"Error: {response.status_code}")
+        return False
+
+
+def w01_kma_async_api_call(execution_date, **kwargs):
+    ti = kwargs['ti']
+    formatted_date = execution_date.strftime('%Y%m%d')
+    api_path = '/api/risk-mappings/w01/kma'
+    api_params = {
+        'dates': formatted_date,
+        'task_id': 'w01_kma',
+        'run_id': ti.run_id
+    }
+
+    response = requests.get(host_path + api_path, params=api_params)
+    if response.status_code == 200:
+        data = response.json()
+        print(data)
+        ti.xcom_push(key='w01_kma_transaction_id', value=data['transaction_id'])
+    else:
+        print('w01_async_api_call failed')
+
 def w03_ecmwf_api_call(execution_date, **kwargs):
     api_path = '/api/risk-mappings/w03/ecmwf'
     api_params = {
@@ -120,9 +161,15 @@ def w03_noaa_cyclone_api_call(execution_date, **kwargs):
 
     requests.get(host_path + api_path, params=api_params)
 
+def w03_kma_api_call(execution_date, **kwargs):
+    formatted_date = execution_date.strftime("%Y%m%d%H") + "0000"
+    api_path = '/api/risk-mappings/w03/kma'
+    api_params = {
+        'date': formatted_date,
+        'max-hour': 48
+    }
 
-def w06_api_call():
-    print('w06 completed')
+    requests.get(host_path + api_path, params=api_params)
 
 
 def w07_api_call(execution_date, **kwargs):
@@ -180,6 +227,18 @@ with DAG(
         timeout=3600  # 총 1시간 동안 상태를 확인
     )
 
+    w01_kma_async_task = PythonOperator(
+        task_id='w01_kma',
+        python_callable=w01_kma_async_api_call
+    )
+
+    w01_kma_wait_task = PythonSensor(
+        task_id='w01_kma_wait',
+        python_callable=w01_kma_check_api_call,
+        mode='poke',  # 또는 'reschedule'로 설정 가능
+        poke_interval=60,  # 60초 간격으로 DB를 체크
+        timeout=3600  # 총 1시간 동안 상태를 확인
+    )
     w03_ecmwf_task = PythonOperator(
         task_id='w03_ecmwf',
         python_callable=w03_ecmwf_api_call
@@ -195,9 +254,9 @@ with DAG(
         python_callable=w03_noaa_api_call
     )
 
-    w06_task = PythonOperator(
-        task_id='w06',
-        python_callable=w06_api_call
+    w03_kma_task = PythonOperator(
+        task_id='w03_kma',
+        python_callable=w03_kma_api_call
     )
 
     w07_task = PythonOperator(
@@ -213,4 +272,4 @@ with DAG(
     # api_task >> next_task
     w01_ecmwf_async_task >> w01_ecmwf_wait_task >> w03_ecmwf_task >> w07_task >> w08_task
     w01_noaa_async_task >> w01_noaa_wait_task >> w03_noaa_task >> w03_noaa_cyclone_task >> w07_task >> w08_task
-    w03_ecmwf_task >> w06_task
+    w01_noaa_async_task >> w01_noaa_wait_task >> w03_noaa_task >> w07_task >> w08_task
